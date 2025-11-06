@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-     <h1>Welcome to Subahs Neupane</h1>
+     <h1>Welcome to Palmetto Panthers</h1>
     </>
   )
 }
