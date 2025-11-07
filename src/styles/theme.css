@@ -1,0 +1,40 @@
+/* src/styles/theme.css */
+
+/* core brand colors */
+:root {
+    --blue: #3b82f6;
+    --red: #ef4444;
+    --green: #22c55e;
+    --yellow: #facc15;
+    --gray: #6b7280;
+    --black: #111827;
+    --white: #ffffff;
+  
+    /* semantic usage */
+    --brand: var(--blue);
+    --error: var(--red);
+    --success: var(--green);
+    --warning: var(--yellow);
+    --text: var(--black);
+    --text-muted: var(--gray);
+    --bg: #f9fafb;
+    --surface: #ffffff;
+    --surface-alt: #f3f4f6;
+    --border: #e5e7eb;
+  
+    /* shadows */
+    --shadow-soft: 0 16px 40px rgba(0,0,0,0.06);
+    --shadow-med: 0 12px 30px rgba(0,0,0,0.05);
+  }
+  
+  /* optional dark mode toggle */
+  :root[data-theme="dark"] {
+    --text: var(--white);
+    --bg: #111827;
+    --surface: #1f2937;
+    --surface-alt: #374151;
+    --border: #4b5563;
+    --text-muted: #9ca3af;
+    --shadow-soft: 0 16px 40px rgba(0,0,0,0.35);
+  }
+  

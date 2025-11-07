@@ -1,0 +1,278 @@
+/* ==============================
+   Import Poppins Font
+   ============================== */
+   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+   body {
+     font-family: "Poppins", sans-serif;
+     background: var(--bg, #f9fafb);
+     color: var(--text, #111827);
+     margin: 0;
+   }
+   
+   /* ==============================
+      Container Setup
+      ============================== */
+   .slider-container {
+     background: var(--surface, #ffffff);
+     border-radius: 18px;
+     box-shadow: var(--shadow-soft, 0 16px 40px rgba(0, 0, 0, 0.06));
+     position: relative;
+     overflow: hidden;
+     width: min(980px, 92vw);
+     max-width: 100%;
+     min-height: 560px;
+     margin: 6vh auto;
+     border: 1px solid var(--border, #e5e7eb);
+   }
+   
+   /* ==============================
+      Forms (left half)
+      ============================== */
+   .form-container {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 50%;
+     height: 100%;
+     transition: all 0.6s ease-in-out;
+     display: grid;
+     place-items: center;
+     padding: 1.5rem;
+     z-index: 2;
+   }
+   
+   /* Sign In visible by default */
+   .sign-in-container {
+     z-index: 3;
+     transform: translateX(0);
+   }
+   
+   /* Sign Up hidden initially */
+   .sign-up-container {
+     opacity: 0;
+     z-index: 1;
+     transform: translateX(0);
+   }
+   
+   /* Active state (signup mode) */
+   .slider-container.right-panel-active .sign-in-container {
+     transform: translateX(100%);
+   }
+   .slider-container.right-panel-active .sign-up-container {
+     transform: translateX(100%);
+     opacity: 1;
+     z-index: 5;
+   }
+   
+   /* ==============================
+      Form Styling
+      ============================== */
+   .slider-form {
+     background: var(--surface, #ffffff);
+     width: 90%;
+     max-width: 360px;
+     border-radius: 12px;
+     padding: 1rem;
+     display: flex;
+     flex-direction: column;
+     gap: 0.9rem;
+   }
+   
+   .slider-form h2 {
+     margin: 0 0 0.4rem 0;
+     color: var(--brand, #3b82f6);
+     font-weight: 800;
+     text-align: center;
+   }
+   
+   /* Inputs + Labels */
+   .label {
+     font-size: 0.85rem;
+     color: var(--text-muted, #6b7280);
+     font-weight: 600;
+     /* margin-bottom: 1px; */
+     display: block;
+   }
+   
+   .input {
+     width: 100%;
+     border: 1px solid var(--border, #e5e7eb);
+     border-radius: 8px;
+     padding: 0.85rem 0.95rem;
+     font-size: 0.95rem;
+     background: var(--surface);
+     outline: none;
+     transition: border 0.15s ease, box-shadow 0.15s ease;
+   }
+   .input:focus {
+     border-color: var(--brand, #3b82f6);
+     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+   }
+   
+   /* Buttons */
+   .btn {
+     background: var(--brand, #3b82f6);
+     color: #fff;
+     border: none;
+     padding: 0.9rem 1rem;
+     border-radius: 8px;
+     font-weight: 700;
+     cursor: pointer;
+     transition: filter 0.15s ease;
+   }
+   .btn:hover {
+     filter: brightness(0.92);
+   }
+   .btn:disabled {
+     opacity: 0.7;
+     cursor: default;
+   }
+   
+   /* Error Banner */
+   .error-banner {
+     background: rgba(239, 68, 68, 0.1);
+     border: 1px solid rgba(239, 68, 68, 0.3);
+     color: #ef4444;
+     padding: 0.6rem 0.8rem;
+     border-radius: 8px;
+     font-weight: 600;
+     text-align: center;
+   }
+   
+   /* ==============================
+      Overlay (right half)
+      ============================== */
+   .overlay-container {
+     position: absolute;
+     top: 0;
+     left: 50%;
+     width: 50%;
+     height: 100%;
+     overflow: hidden;
+     transition: transform 0.6s ease-in-out;
+     z-index: 4;
+   }
+   .slider-container.right-panel-active .overlay-container {
+     transform: translateX(-100%);
+   }
+   
+   .overlay {
+     position: relative;
+     left: -100%;
+     height: 100%;
+     width: 200%;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     transform: translateX(0);
+     transition: transform 0.6s ease-in-out;
+   }
+   .slider-container.right-panel-active .overlay {
+     transform: translateX(50%);
+   }
+   
+   /* Panel content */
+   .overlay-panel {
+     position: relative;
+     display: grid;
+     place-items: center;
+     padding: 2rem;
+     text-align: center;
+     color: white;
+   }
+   
+   /* Full background image */
+   .with-bg {
+     position: relative;
+     isolation: isolate;
+   }
+   .with-bg::before {
+     content: "";
+     position: absolute;
+     inset: 0;
+     background: var(--overlay-bg, none) center / cover no-repeat;
+     z-index: -1;
+     opacity: 1;
+     /* filter: brightness(0.9) contrast(1.05); */
+   }
+   .with-bg::after {
+     content: "";
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(
+       135deg,
+       rgba(59, 130, 246, 0.7),
+       rgba(37, 99, 235, 0.7)
+     );
+     z-index: -1;
+     opacity: 0.7;
+   }
+   
+   /* Overlay Button */
+   .ghost-btn {
+     background: transparent;
+     border: 2px solid #fff;
+     color: #fff;
+     padding: 0.75rem 1.3rem;
+     border-radius: 999px;
+     font-weight: 700;
+     cursor: pointer;
+     letter-spacing: 0.5px;
+     transition: background 0.15s ease, color 0.15s ease;
+   }
+   .ghost-btn:hover {
+     background: #fff;
+     color: var(--brand, #3b82f6);
+   }
+   
+   /* Overlay Text */
+   .welcome {
+     max-width: 340px;
+   }
+   .welcome-title {
+     margin: 0.3rem 0;
+     font-weight: 800;
+   }
+   .welcome-sub {
+     margin: 0 0 1rem;
+     opacity: 0.95;
+     font-weight: 500;
+   }
+   
+   /* Spinner */
+   .spinner {
+     display: inline-block;
+     width: 16px;
+     height: 16px;
+     border: 3px solid rgba(255, 255, 255, 0.6);
+     border-top-color: #fff;
+     border-radius: 50%;
+     animation: spin 0.9s linear infinite;
+     margin-right: 8px;
+     vertical-align: -3px;
+   }
+   @keyframes spin {
+     to {
+       transform: rotate(360deg);
+     }
+   }
+   
+   /* ==============================
+      Responsive
+      ============================== */
+   @media (max-width: 900px) {
+     .slider-container {
+       min-height: 640px;
+     }
+     .overlay-container {
+       display: none;
+     }
+     .form-container {
+       width: 100%;
+       left: 0 !important;
+       transform: none !important;
+       opacity: 1 !important;
+       z-index: 5;
+     }
+   }
+   
